@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment"
+    android:background="#fC0FF0">
+
+
+    <TextView
+        android:id="@+id/fragmentTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:text="fragment1"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:id="@+id/buttonToFragment2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentTextView"
+        app:layout_constraintStart_toStartOf="@id/fragmentTextView"
+        app:layout_constraintEnd_toEndOf="@id/fragmentTextView"
+        android:textColor="@color/black"
+        android:text="Goto Fragment2"
+        />
+    <Button
+        android:id="@+id/buttonToFragment3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToFragment2"
+        app:layout_constraintStart_toStartOf="@id/buttonToFragment2"
+        app:layout_constraintEnd_toEndOf="@id/buttonToFragment2"
+        android:textColor="@color/black"
+        android:text="Goto Fragment3"
+        />
+
+    <Button
+        android:id="@+id/f1_btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToFragment3"
+        app:layout_constraintStart_toStartOf="@id/buttonToFragment3"
+        app:layout_constraintEnd_toEndOf="@id/buttonToFragment3"
+        android:textColor="@color/black"
+        android:text="Show person"
+        />
+
+    <TextView
+        android:id="@+id/f1_tv_btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/f1_btn3"
+        app:layout_constraintStart_toStartOf="@id/buttonToFragment3"
+        app:layout_constraintEnd_toEndOf="@id/buttonToFragment3"
+        android:textColor="@color/black"
+        android:text="Here person"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
