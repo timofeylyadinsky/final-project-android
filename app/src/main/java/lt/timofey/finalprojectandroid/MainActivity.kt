@@ -10,11 +10,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import lt.timofey.finalprojectandroid.databinding.ActivityMainBinding
+import lt.timofey.finalprojectandroid.livedata.CarViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
 
     private lateinit var binding: ActivityMainBinding
+
+    lateinit var viewModel: CarViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
+        viewModel = ViewModelProvider(this).get(CarViewModel::class.java)
 
         setSupportActionBar(binding.toolbar)
 

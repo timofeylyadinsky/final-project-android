@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_wishlist" />
     <fragment
         android:id="@+id/carInfoFragment"
-        android:name="lt.timofey.finalprojectandroid.carInfoFragment"
+        android:name="lt.timofey.finalprojectandroid.CarInfoFragment"
         android:label="fragment_car_info"
         tools:layout="@layout/fragment_car_info" />
 </navigation>

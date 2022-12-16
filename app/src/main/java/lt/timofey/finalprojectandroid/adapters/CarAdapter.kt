@@ -24,7 +24,7 @@ class CarAdapter(val plist: List<Car>, val mactivity: MainFragment): RecyclerVie
         holder = CarViewHolder(inflater.inflate(R.layout.item_layout, parent, false))
 
         holder.itemView.setOnClickListener{
-            //mactivity.itemClick(holder.adapterPosition)
+            mactivity.itemClick(holder.adapterPosition)
         }
         val btnAdd = holder.itemView.findViewById<ImageButton>(R.id.addToFavourite)
 

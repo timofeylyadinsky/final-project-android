@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import lt.timofey.finalprojectandroid.adapters.CarAdapter
 import lt.timofey.finalprojectandroid.api.ApiService
 import lt.timofey.finalprojectandroid.db.Car
 import lt.timofey.finalprojectandroid.db.CarsWishlistDB
+import lt.timofey.finalprojectandroid.livedata.CarViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,19 +32,20 @@ class MainFragment : Fragment() {
     var cars = listOf<Car>()
     val carList = mutableListOf<Car>()
     lateinit var carsRecyclerViewList: RecyclerView
-
+    lateinit var viewModel: CarViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        viewModel = ViewModelProvider(requireActivity()).get(CarViewModel::class.java)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getCars()
-
+        navController = (activity as MainActivity).navController
         /*addToFavourite.setOnClickListener(){
             val intent = Intent(this, WishlistActivity::class.java)
             startActivity(intent)
@@ -59,9 +62,18 @@ class MainFragment : Fragment() {
 
         if (findById(cars[position].id)) {
             carWishlistDao.addNew(cars[position])
+            Toast.makeText(requireActivity(),"Add to Favourite",Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(requireActivity(),"Already in favourite",Toast.LENGTH_LONG).show()
         }
 
 
+    }
+
+    fun itemClick(position: Int){
+        viewModel.liveCar.value = Car(cars[position].id,cars[position].maker,cars[position].model,cars[position].year,cars[position].engine,cars[position].country,cars[position].image)
+
+        navController.navigate(R.id.carInfoFragment)
     }
 
     fun findById(num: Int): Boolean{
