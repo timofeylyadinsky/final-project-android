@@ -7,58 +7,17 @@
     tools:context=".MainFragment"
     android:background="#fC0FF0">
 
-
-    <TextView
-        android:id="@+id/fragmentTextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:gravity="center"
-        android:text="fragment1"
-        android:textColor="@color/black"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
-    <Button
-        android:id="@+id/buttonToFragment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentTextView"
-        app:layout_constraintStart_toStartOf="@id/fragmentTextView"
-        app:layout_constraintEnd_toEndOf="@id/fragmentTextView"
-        android:textColor="@color/black"
-        android:text="Goto Fragment2"
-        />
-    <Button
-        android:id="@+id/buttonToFragment3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToFragment2"
-        app:layout_constraintStart_toStartOf="@id/buttonToFragment2"
-        app:layout_constraintEnd_toEndOf="@id/buttonToFragment2"
-        android:textColor="@color/black"
-        android:text="Goto Fragment3"
-        />
-
-    <Button
-        android:id="@+id/f1_btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToFragment3"
-        app:layout_constraintStart_toStartOf="@id/buttonToFragment3"
-        app:layout_constraintEnd_toEndOf="@id/buttonToFragment3"
-        android:textColor="@color/black"
-        android:text="Show person"
-        />
-
-    <TextView
-        android:id="@+id/f1_tv_btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/f1_btn3"
-        app:layout_constraintStart_toStartOf="@id/buttonToFragment3"
-        app:layout_constraintEnd_toEndOf="@id/buttonToFragment3"
-        android:textColor="@color/black"
-        android:text="Here person"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginVertical="20sp"
+        android:background="#0099FF"
         />
 
 
