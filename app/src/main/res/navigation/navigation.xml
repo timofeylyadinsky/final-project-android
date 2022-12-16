@@ -20,4 +20,9 @@
         android:name="lt.timofey.finalprojectandroid.CarInfoFragment"
         android:label="Information"
         tools:layout="@layout/fragment_car_info" />
+    <fragment
+        android:id="@+id/makersFragment"
+        android:name="lt.timofey.finalprojectandroid.MakersFragment"
+        android:label="Makers"
+        tools:layout="@layout/fragment_makers" />
 </navigation>

@@ -5,8 +5,13 @@
         android:title="All cars"
         app:showAsAction="never"
         />
+    <item android:id="@+id/makersFragment"
+        android:title="Makers"
+        app:showAsAction="never"
+        />
     <item android:id="@+id/wishlistFragment"
         android:title="Favourite"
         app:showAsAction="never"
         />
+
 </menu>
