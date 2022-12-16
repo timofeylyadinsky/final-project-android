@@ -17,18 +17,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="17dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/ic_baseline_directions_car_24" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="17dp"
-        android:text="Android haha"
+        android:text="Auto info"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Android hello" />
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:text="by timofey" />
 </LinearLayout>
