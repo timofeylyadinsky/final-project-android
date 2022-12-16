@@ -22,15 +22,15 @@ class CarAdapter(val plist: List<Car>, val mactivity: MainFragment): RecyclerVie
         val inflater = LayoutInflater.from(parent.context)
         var holder: CarAdapter.CarViewHolder
         holder = CarViewHolder(inflater.inflate(R.layout.item_layout, parent, false))
-
-        holder.itemView.setOnClickListener{
-            mactivity.itemClick(holder.adapterPosition)
-        }
-        val btnAdd = holder.itemView.findViewById<ImageButton>(R.id.addToFavourite)
+        val btnAdd = holder.itemView.findViewById<ImageView>(R.id.addToFavourite)
 
         btnAdd.setOnClickListener {
             mactivity.addItemToWishList(holder.adapterPosition)
         }
+        holder.itemView.setOnClickListener{
+            mactivity.itemClick(holder.adapterPosition)
+        }
+
         return holder
     }
 
