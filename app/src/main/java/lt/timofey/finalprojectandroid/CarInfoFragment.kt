@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import com.squareup.picasso.Picasso
 import lt.timofey.finalprojectandroid.livedata.CarViewModel
 
 
@@ -29,9 +31,15 @@ class CarInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val tv = requireActivity().findViewById<TextView>(R.id.carName)
+        val carMakerName = requireActivity().findViewById<TextView>(R.id.carMakerName)
+        val carModelName = requireActivity().findViewById<TextView>(R.id.carModelName)
+        val carImage = requireActivity().findViewById<ImageView>(R.id.carImage)
         viewModel.liveCar.observeForever{
-            tv.text = it.toString()
+            carMakerName.text = it.maker.toString()
+            carModelName.text = it.model
+            Picasso.get()
+                .load(it.image)
+                .into(carImage)
         }
     }
 }
