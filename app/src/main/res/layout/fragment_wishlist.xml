@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background"
     tools:context=".WishlistFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="10sp"
         android:layout_marginVertical="10sp"
-        android:background="#0099FF"
+        android:background="@drawable/recycle_background"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

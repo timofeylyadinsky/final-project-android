@@ -25,7 +25,8 @@
             android:layout_toStartOf="@+id/addToFavourite"
             android:text="VW GOLF"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#cccccc"/>
         <TextView
             android:id="@+id/yearCar"
             android:layout_width="wrap_content"
@@ -37,6 +38,7 @@
             android:textStyle="bold"
             android:layout_marginHorizontal="10dp"
             android:paddingBottom="10dp"
+            android:textColor="#cccccc"
             />
         <ImageView
             android:id="@+id/addToFavourite"
@@ -46,6 +48,7 @@
             android:layout_centerVertical="true"
             app:srcCompat="@drawable/ic_baseline_favorite_24"
             android:layout_marginEnd="10dp"
+            app:tint="#cccccc"
             />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
