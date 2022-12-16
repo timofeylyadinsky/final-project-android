@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="lt.timofey.finalprojectandroid.MainFragment"
-        android:label="fragment_main"
+        android:label="All Cars"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/wishlistFragment"
         android:name="lt.timofey.finalprojectandroid.WishlistFragment"
-        android:label="fragment_wishlist"
+        android:label="Favourite"
         tools:layout="@layout/fragment_wishlist" />
     <fragment
         android:id="@+id/carInfoFragment"
         android:name="lt.timofey.finalprojectandroid.CarInfoFragment"
-        android:label="fragment_car_info"
+        android:label="Information"
         tools:layout="@layout/fragment_car_info" />
 </navigation>

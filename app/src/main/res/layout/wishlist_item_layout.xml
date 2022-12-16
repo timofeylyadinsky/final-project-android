@@ -24,8 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="10dp"
-            android:layout_toStartOf="@+id/addToFavourite"
-            android:inputType="textMultiLine"
+            android:layout_toStartOf="@+id/deleteFromFavourite"
             android:text="VW GOLF"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -41,7 +40,7 @@
             android:layout_marginHorizontal="10dp"
             android:paddingBottom="10dp"
             />
-        <ImageButton
+        <ImageView
             android:id="@+id/deleteFromFavourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

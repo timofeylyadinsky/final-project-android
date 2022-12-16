@@ -36,7 +36,9 @@ class CarAdapter(val plist: List<Car>, val mactivity: MainFragment): RecyclerVie
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val carMaker = holder.itemView.findViewById<TextView>(R.id.carMaker)
-        carMaker.text = plist[position].maker +" "+ plist[position].model
+        carMaker.text = plist[position].maker +"\n"+ plist[position].model
+        val year = holder.itemView.findViewById<TextView>(R.id.yearCar)
+        year.text = plist[position].year
     }
 
     override fun getItemCount(): Int {
