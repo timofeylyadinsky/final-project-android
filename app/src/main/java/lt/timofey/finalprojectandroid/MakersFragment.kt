@@ -31,7 +31,9 @@ class MakersFragment : Fragment() {
     lateinit var navController: NavController
     var cars = listOf<Car>()
     var carMakers = listOf<String>()
+    var filterMakers = listOf<String>()
     val carList = mutableListOf<Car>()
+
     lateinit var carsRecyclerViewList: RecyclerView
     lateinit var viewModel: CarViewModel
     lateinit var searchView: SearchView
@@ -48,7 +50,7 @@ class MakersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getCars()
         navController = (activity as MainActivity).navController
-        searchView = requireActivity().findViewById<SearchView>(R.id.searchView)
+        searchView = requireActivity().findViewById<SearchView>(R.id.searchView2)
         searchView.clearFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -67,6 +69,10 @@ class MakersFragment : Fragment() {
             startActivity(intent)
         }*/
     }
+    fun itemClick(position: Int){
+        viewModel.liveName.value = filterMakers[position]
+        navController.navigate(R.id.sortedMakersFragment)
+    }
     private fun filter(text: String) {
         // creating a new array list to filter our data.
         val filteredlist = ArrayList<String>()
@@ -83,6 +89,9 @@ class MakersFragment : Fragment() {
         if (filteredlist.isEmpty()) {
             // if no item is added in filtered list we are
             // displaying a toast message as no data found.
+            carsRecyclerViewList = requireActivity().findViewById(R.id.recyclerView)
+            carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
+            carsRecyclerViewList.adapter = MakersAdapter(filteredlist,this@MakersFragment)
             Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
         } else {
             // at last we are passing that filtered
@@ -91,13 +100,7 @@ class MakersFragment : Fragment() {
             carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
             carsRecyclerViewList.adapter = MakersAdapter(filteredlist,this@MakersFragment)
         }
-    }
-
-
-    fun itemClick(position: Int){
-        viewModel.liveCar.value = Car(cars[position].id,cars[position].maker,cars[position].model,cars[position].year,cars[position].engine,cars[position].country,cars[position].image)
-
-        navController.navigate(R.id.carInfoFragment)
+        filterMakers = filteredlist
     }
 
     fun getCars(){
@@ -115,11 +118,12 @@ class MakersFragment : Fragment() {
                 for (item in cars){
                     setMakers.add(item.maker)
                 }
-                carMakers = setMakers.toList()
+                carMakers = setMakers.toList().sorted()
+                filterMakers = carMakers
                 //tv.text = cars.toString()
                 carsRecyclerViewList = requireActivity().findViewById(R.id.recyclerView)
                 carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-                carsRecyclerViewList.adapter = MakersAdapter(carMakers.sorted(),this@MakersFragment)
+                carsRecyclerViewList.adapter = MakersAdapter(carMakers,this@MakersFragment)
             }
         })
     }

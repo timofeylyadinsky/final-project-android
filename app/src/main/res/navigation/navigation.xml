@@ -25,4 +25,9 @@
         android:name="lt.timofey.finalprojectandroid.MakersFragment"
         android:label="Makers"
         tools:layout="@layout/fragment_makers" />
+    <fragment
+        android:id="@+id/sortedMakersFragment"
+        android:name="lt.timofey.finalprojectandroid.SortedMakersFragment"
+        android:label="fragment_sorted_makers"
+        tools:layout="@layout/fragment_sorted_makers" />
 </navigation>

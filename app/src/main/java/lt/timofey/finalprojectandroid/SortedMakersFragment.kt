@@ -1,24 +1,21 @@
 package lt.timofey.finalprojectandroid
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-//import android.widget.SearchView
-import androidx.appcompat.widget.SearchView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import kotlinx.android.synthetic.main.item_layout.*
+import com.squareup.picasso.Picasso
 import lt.timofey.finalprojectandroid.adapters.CarAdapter
+import lt.timofey.finalprojectandroid.adapters.SortedAdapter
 import lt.timofey.finalprojectandroid.api.ApiService
 import lt.timofey.finalprojectandroid.db.Car
 import lt.timofey.finalprojectandroid.db.CarsWishlistDB
@@ -30,7 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainFragment : Fragment() {
+class SortedMakersFragment : Fragment() {
     val apiService = ApiService.create()
     lateinit var navController: NavController
     var cars = listOf<Car>()
@@ -45,14 +42,15 @@ class MainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         viewModel = ViewModelProvider(requireActivity()).get(CarViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_sorted_makers, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         getCars()
         navController = (activity as MainActivity).navController
-        searchView = requireActivity().findViewById<SearchView>(R.id.searchView)
+        searchView = requireActivity().findViewById<SearchView>(R.id.searchView3)
         searchView.clearFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -71,6 +69,7 @@ class MainFragment : Fragment() {
             startActivity(intent)
         }*/
     }
+
     private fun filter(text: String) {
         // creating a new array list to filter our data.
         val filteredlist = ArrayList<Car>()
@@ -89,18 +88,19 @@ class MainFragment : Fragment() {
             // displaying a toast message as no data found.
             carsRecyclerViewList = requireActivity().findViewById(R.id.recyclerView)
             carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-            carsRecyclerViewList.adapter = CarAdapter(filteredlist,this@MainFragment)
+            carsRecyclerViewList.adapter = SortedAdapter(filteredlist, this@SortedMakersFragment)
             Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
         } else {
             // at last we are passing that filtered
             // list to our adapter class.
             carsRecyclerViewList = requireActivity().findViewById(R.id.recyclerView)
             carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-            carsRecyclerViewList.adapter = CarAdapter(filteredlist,this@MainFragment)
+            carsRecyclerViewList.adapter = SortedAdapter(filteredlist, this@SortedMakersFragment)
         }
         filteredCars = filteredlist
     }
-    fun addItemToWishList(position: Int){
+
+    fun addItemToWishList(position: Int) {
         val db = Room.databaseBuilder(
             requireContext().applicationContext,
             CarsWishlistDB::class.java, "car_db"
@@ -111,21 +111,21 @@ class MainFragment : Fragment() {
 
         if (findById(filteredCars[position].id)) {
             carWishlistDao.addNew(filteredCars[position])
-            Toast.makeText(requireActivity(),"Add to Favourite",Toast.LENGTH_LONG).show()
-        }else{
-            Toast.makeText(requireActivity(),"Already in favourite",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireActivity(), "Add to Favourite", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireActivity(), "Already in favourite", Toast.LENGTH_LONG).show()
         }
 
 
     }
 
-    fun itemClick(position: Int){
-        viewModel.liveCar.value = filteredCars[position]//Car(filteredCars[position].id,cars[position].maker,cars[position].model,cars[position].year,cars[position].engine,cars[position].country,cars[position].image)
+    fun itemClick(position: Int) {
+        viewModel.liveCar.value = filteredCars[position]
 
         navController.navigate(R.id.carInfoFragment)
     }
 
-    fun findById(num: Int): Boolean{
+    fun findById(num: Int): Boolean {
         val db = Room.databaseBuilder(
             requireContext().applicationContext,
             CarsWishlistDB::class.java, "car_db"
@@ -139,24 +139,29 @@ class MainFragment : Fragment() {
         return expectedCarsFromDB.isEmpty()
     }
 
-    fun getCars(){
+    fun getCars() {
         val call = apiService.getCars()
 
-        call.enqueue(object: Callback<List<Car>> {
+        call.enqueue(object : Callback<List<Car>> {
 
             override fun onFailure(call: Call<List<Car>>, t: Throwable) {
-                Log.d("!!!",t.toString())
+                Log.d("!!!", t.toString())
             }
 
             override fun onResponse(call: Call<List<Car>>, response: Response<List<Car>>) {
                 cars = response.body()!!
+
+                var name: String = ""
+                viewModel.liveName.observeForever{
+                    name = it
+                }
+                cars = cars.filter { it.maker.contains(name) }
                 filteredCars = cars
                 //tv.text = cars.toString()
                 carsRecyclerViewList = requireActivity().findViewById(R.id.recyclerView)
                 carsRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-                carsRecyclerViewList.adapter = CarAdapter(cars,this@MainFragment)
+                carsRecyclerViewList.adapter = SortedAdapter(cars, this@SortedMakersFragment)
             }
         })
     }
-
 }

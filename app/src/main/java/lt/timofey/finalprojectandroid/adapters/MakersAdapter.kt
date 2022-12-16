@@ -22,9 +22,9 @@ class MakersAdapter(val plist: List<String>, val mactivity: MakersFragment): Rec
         holder = MakersViewHolder(inflater.inflate(R.layout.makers_layout, parent, false))
         //val btnAdd = holder.itemView.findViewById<ImageView>(R.id.addToFavourite)
 
-        //holder.itemView.setOnClickListener{
-            //mactivity.itemClick(holder.adapterPosition)
-        //}
+        holder.itemView.setOnClickListener{
+            mactivity.itemClick(holder.adapterPosition)
+        }
 
         return holder
     }
