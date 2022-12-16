@@ -10,4 +10,14 @@
         android:name="lt.timofey.finalprojectandroid.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="lt.timofey.finalprojectandroid.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+    <fragment
+        android:id="@+id/carInfoFragment"
+        android:name="lt.timofey.finalprojectandroid.carInfoFragment"
+        android:label="fragment_car_info"
+        tools:layout="@layout/fragment_car_info" />
 </navigation>
